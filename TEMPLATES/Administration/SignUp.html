@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block CSS %}
+<link rel="stylesheet" href="{% static 'Administration/Authentication.css'%}">
+{% endblock %}
+{% block body%}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5 bg-dark">
+          <div class="card-img-left d-none d-md-flex">
+             <!-- Background image for card set in CSS! -->
+          </div>
+          <div class="card-body">
+              <h5 class="card-title text-center text-white"><i class="fas fa-user-lock"></i> Sign Up</h5>
+              <h6 class="text-center text-white">Already have an account? <a href="{% url 'Administration:login' %}">Log In</a></h6>
+              <form class="form-signin" method="POST" action="">
+                  {% csrf_token %}
+                  <div class="form-label-group">
+                      {{form.username}}
+                      <p class="text-white text-center text-md-left" for="inputUserame">Username</p>
+                      {{ form.username.errors }}
+                  </div>
+
+                  <div class="form-label-group">
+                      {{form.password1}}
+                      <p class="text-white text-center text-md-left" for="inputEmail">Password</p>
+                      {{ form.password1.errors }}
+                  </div>
+
+                  <div class="form-label-group">
+                    {{form.password2}}
+                    <p class="text-white text-center text-md-left" for="inputEmail">Retype Password</p>
+                    {{ form.password2.errors }}
+                </div>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
