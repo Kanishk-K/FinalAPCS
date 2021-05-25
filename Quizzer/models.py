@@ -47,6 +47,7 @@ class Choice(models.Model):
     ChoiceNumber = models.IntegerField()
     Text = models.CharField(max_length=200)
     is_correct = models.BooleanField(default=False)
+    Picks = models.IntegerField(default=0)
     class Meta:
         unique_together = [
             ("LinkedQuestion","Text")

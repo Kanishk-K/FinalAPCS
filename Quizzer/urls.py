@@ -14,4 +14,5 @@ urlpatterns = [
     path('delete/<int:id>/', views.deleteQuiz ,name="deleteQuiz"),
     path('delete/<int:id>/<int:questionId>/',views.deleteQuestion,name="deleteQuestion"),
     path('delete/<int:id>/<int:questionId>/<int:choiceId>/',views.deleteChoice,name="deleteChoice"),
+    path('fetch/<int:ChoiceID>/',views.AjaxView ,name="AjaxQuiz")
 ]

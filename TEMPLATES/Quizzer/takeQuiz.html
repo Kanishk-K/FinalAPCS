@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block CSS %}
+<link rel="stylesheet" href="{% static 'Quizzes/TakeQuiz.css'%}">
+{% endblock %}
+{% block body%}
+<div class="container">
+    <div class="row d-flex justify-content-center ">
+        <div class="col-10 text-center mt-5 text-white">
+            <h1 style="font-size: 8vmin;">{{Quiz.Subject}} Quiz</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<div class="row text-white px-2 px-lg-0">
+		{% for Question in Questions %}
+		<div class="col-12 col-lg-8 bg-dark rounded question-base" data-order="{{Question.QuestionNumber}}" data-aos="fade-right" hidden>
+			<h4 class="m-2 my-4 text-center" id="question">Q: {{Question.Prompt}}</h4>
+			<div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+				{% for Choice in Question.choice_set.all %}
+				<label class="options">
+					{{Choice.Text}} 
+					<input type="radio" name="{{Question.id}}" data-choiceid="{{Choice.id}}" required> 
+					<span class="checkmark"></span> 
+				</label> 
+				{% endfor %}
+			</div>
+			<button class="btn btn-success mb-2 float-right mx-2 NEXT" disabled>Next</button>
+			<button class="btn btn-success mb-2 float-right mx-2 CONFIRM" disabled>Confirm</button>
+			<!-- Actual Question and Quiz App-->
+		</div>
+		{% endfor %}
+		<div class="col-12 bg-dark rounded question-base" data-order="{{Question.QuestionNumber}}" data-aos="fade-right" hidden>
+			<h5 class="m-2 my-4" id="question">This is the end of the {{Quiz.Subject}} Quiz. You answered <span id="output"></span> out of {{Questions|length}} questions correctly.</h5>
+			<a class="btn btn-danger mb-2 float-left" href="{% url 'Quizzer:indexQuiz'%}">Finish Quiz</a>
+			<!-- Actual Question and Quiz App-->
+		</div>
+		<div id="polls" class="col-12 col-lg-4 my-2">
+			<!-- Polls-->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 mt-2 text-white" id="reasoning">
+			<!-- Explanation of Answer-->
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block JS %}
+<script src="{% static 'Quizzes/TakeQuiz.js' %}"></script>
+{% endblock %}

@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Quiz, Question, Choice
 from .forms import QuizForm, QuestionForm, ChoiceForm
 from django.contrib import messages
+from django.db.models import Sum
 
 # Create your views here.
 def index(request):
@@ -13,7 +14,11 @@ def indexQuiz(request):
     }
     return render(request,'Quizzer/indexQuiz.html',context=context)
 def startQuiz(request,id):
-    return HttpResponse("Hey")
+    context = {
+        "Quiz":Quiz.objects.get(id=id),
+        "Questions":Quiz.objects.get(id=id).question_set.all()
+    }
+    return render(request,"Quizzer/takeQuiz.html",context=context)
 def quizQuestion(request,id,questionId):
     return HttpResponse("Hey")
 
@@ -110,3 +115,16 @@ def deleteChoice(request, id, questionId, choiceId):
     ChoiceObject = Choice.objects.get(id=choiceId)
     ChoiceObject.delete()
     return redirect("Quizzer:modifyQuestion",id=id,questionId=questionId)
+def AjaxView(request, ChoiceID):
+
+    choice_obj = Choice.objects.get(id=ChoiceID)
+    choice_obj.Picks += 1;
+    choice_obj.save()
+    question_object = choice_obj.LinkedQuestion
+    total = Question.objects.annotate(total_picks=Sum('choice__Picks')).get(id=question_object.id)
+    response = {
+        "Value":choice_obj.is_correct,
+        "Percentage": round((choice_obj.Picks/total.total_picks)*100),
+        "Reasoning" : question_object.Explanation
+    }
+    return JsonResponse(response)
