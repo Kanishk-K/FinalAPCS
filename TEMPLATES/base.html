@@ -32,7 +32,7 @@
                 </li>
                 {% if request.user.is_staff %}
                 <li class="nav-item ml-lg-2">
-                  <a class="nav-link effect-shine" href="#"><i class="fas fa-cloud-upload-alt"></i> Create Quiz</a>
+                  <a class="nav-link effect-shine" href="{% url 'Quizzer:modifyIndex' %}"><i class="fas fa-cloud-upload-alt"></i> Modify Quiz</a>
                 </li>
                 {% endif %}
                 {% if request.user.is_superuser %}
@@ -42,7 +42,7 @@
                 {% endif %}
                 {% if request.user.is_authenticated %}
                 <li class="nav-item ml-lg-2">
-                  <a class="nav-link effect-shine" href="{% url 'Administration:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout ({{request.user.username}})</a>
+                  <a class="nav-link effect-shine" href="{% url 'Administration:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item ml-lg-2">

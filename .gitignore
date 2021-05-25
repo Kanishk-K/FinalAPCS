@@ -1,3 +1,5 @@
+# Media Files
+/MEDIA
 # APP SSH Keys
 *.pem
 *.key

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block CSS%}
+<link rel="stylesheet" href="{% static 'Quizzes/QuizModifyCard.css'%}">
+{% endblock %}
+{% block body%}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-10 col-md-12 card mt-2 bg-success">
+            <h5 class="card-header">
+                <a class="d-flex justify-content-center collapsed" data-toggle="collapse" href="#New_Quiz" aria-expanded="false" aria-controls="collapse-collapsed" id="heading-collapsed">
+                    <i class="text-white fas fa-plus"></i>
+                </a>
+            </h5>
+            <div id="New_Quiz" class="collapse" aria-labelledby="heading-collapsed">
+                <div class="card-body">
+                    <form enctype="multipart/form-data" class="form-signin" method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-label-group">
+                            {{form.Subject}}
+                            <p class="text-white text-center text-md-left" for="inputUserame">Subject</p>
+                            {{ form.Subject.errors }}
+                        </div>
+      
+                        <div class="form-label-group">
+                            {{form.Description}}
+                            <p class="text-white text-center text-md-left" for="inputEmail">Description</p>
+                            {{ form.password.errors }}
+                        </div>
+
+                        <div class="form-label-group">
+                            {{form.Image}}
+                            <p class="text-white text-center text-md-left" for="inputEmail">Image</p>
+                            {{ form.password.errors }}
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create Quiz</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-2">
+    <div class="row d-flex justify-content-center text-white">
+        <h3 style="text-decoration: underline;font-size: 7vmin;">Existing Quizzes</h3>
+    </div>
+</div>
+<div class="container mt-2">
+    <div class="row">
+        {% for Quiz in Quizzes%}
+        <div class="col-6 col-md-4 col-xl-3">
+            <div class="card bg-dark">
+                <div class="card-header pmd-title-separator">
+                    <h3 class="card-title"><a href="{% url 'Quizzer:modifyQuiz' Quiz.id %}" class="underline text-white">{{Quiz.Subject}}</a></h3>
+                    <p class="card-subtitle text-secondary">{{Quiz.Description|truncatechars:40}}</p> 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

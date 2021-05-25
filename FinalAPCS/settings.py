@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 
     'Administration',
     'Quizzer',
+
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +132,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "STATIC")
 ]
 STATIC_URL = '/STATIC/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
 MEDIA_URL = '/MEDIA/'
 
 LOGIN_REDIRECT_URL = 'Quizzer:index'
