@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+import django_heroku
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
@@ -139,3 +140,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
 MEDIA_URL = '/MEDIA/'
 
 LOGIN_REDIRECT_URL = 'Quizzer:index'
+
+django_heroku.settings(locals())
