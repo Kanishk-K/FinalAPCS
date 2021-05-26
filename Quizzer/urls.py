@@ -4,8 +4,7 @@ from . import views
 
 app_name = 'Quizzer'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('quiz/', views.indexQuiz,name="indexQuiz"),
+    path('', views.indexQuiz,name="index"),
     path('quiz/<int:id>/',views.startQuiz,name="startQuiz"),
     path('quiz/<int:id>/<int:questionId>/',views.quizQuestion,name="quizQuestion"),
     path('modify/', views.modifyIndex, name="modifyIndex"),

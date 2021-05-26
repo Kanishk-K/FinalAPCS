@@ -32,7 +32,7 @@
 		{% endfor %}
 		<div class="col-12 bg-dark rounded question-base" data-order="{{Question.QuestionNumber}}" data-aos="fade-right" hidden>
 			<h5 class="m-2 my-4" id="question">This is the end of the {{Quiz.Subject}} Quiz. You answered <span id="output"></span> out of {{Questions|length}} questions correctly.</h5>
-			<a class="btn btn-danger mb-2 float-left" href="{% url 'Quizzer:indexQuiz'%}">Finish Quiz</a>
+			<a class="btn btn-danger mb-2 float-left" href="{% url 'Quizzer:index'%}">Finish Quiz</a>
 			<!-- Actual Question and Quiz App-->
 		</div>
 		<div id="polls" class="col-12 col-lg-4 my-2">
