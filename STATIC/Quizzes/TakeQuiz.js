@@ -21,7 +21,7 @@ $( document ).ready(function() {
             ID = $(this).closest(".question-base").find("input[type=radio]:checked").data("choiceid");
             // Submit request to check answer
             $.ajax({
-                url: `/fetch/${ID}`
+                url: `https://apcsfinal.herokuapp.com/fetch/${ID}`
             }).done(function(data){
                 if(data.Value){
                     correct++;

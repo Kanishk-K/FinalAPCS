@@ -31,7 +31,7 @@ SECRET_KEY = 'g%q2x5kz@x=0=wttsz7+3id#ans7-c0&ib8$9cp!4&4c(#e@ay'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['apcsfinal.herokuapp.com']
 
 
 # Application definition
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
