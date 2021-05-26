@@ -4,6 +4,8 @@ from .models import Quiz, Question, Choice
 from .forms import QuizForm, QuestionForm, ChoiceForm
 from django.contrib import messages
 from django.db.models import Sum
+from django.contrib.admin.views.decorators import staff_member_required
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
@@ -22,6 +24,7 @@ def startQuiz(request,id):
 def quizQuestion(request,id,questionId):
     return HttpResponse("Hey")
 
+@staff_member_required(login_url=reverse_lazy("Administration:login"))
 def modifyIndex(request):
     if request.method == "POST":
         form = QuizForm(request.POST,request.FILES)
@@ -44,6 +47,7 @@ def modifyIndex(request):
         }
         return render(request,'Quizzer/modifyIndex.html',context=context)
 
+@staff_member_required(login_url=reverse_lazy("Administration:login"))
 def modifyQuiz(request,id):
     if request.method == "POST":
         form = QuestionForm(request.POST)
@@ -68,6 +72,7 @@ def modifyQuiz(request,id):
         }
         return render(request,'Quizzer/modifyQuiz.html',context=context)
 
+@staff_member_required(login_url=reverse_lazy("Administration:login"))
 def modifyQuestion(request, id, questionId):
     if request.method == "POST":
         form = ChoiceForm(request.POST)
@@ -100,23 +105,25 @@ def modifyQuestion(request, id, questionId):
         }
         return render(request,'Quizzer/modifyQuestion.html',context=context)
 
+@staff_member_required(login_url=reverse_lazy("Administration:login"))
 def deleteQuiz(request, id):
     QuizObject = Quiz.objects.get(id=id)
     QuizObject.delete()
     return redirect("Quizzer:modifyIndex")
 
-
+@staff_member_required(login_url=reverse_lazy("Administration:login"))
 def deleteQuestion(request, id, questionId):
     QuestionObject = Question.objects.get(id=questionId)
     QuestionObject.delete()
     return redirect("Quizzer:modifyQuiz",id=id)
 
+@staff_member_required(login_url=reverse_lazy("Administration:login"))
 def deleteChoice(request, id, questionId, choiceId):
     ChoiceObject = Choice.objects.get(id=choiceId)
     ChoiceObject.delete()
     return redirect("Quizzer:modifyQuestion",id=id,questionId=questionId)
-def AjaxView(request, ChoiceID):
 
+def AjaxView(request, ChoiceID):
     choice_obj = Choice.objects.get(id=ChoiceID)
     choice_obj.Picks += 1;
     choice_obj.save()

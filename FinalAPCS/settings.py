@@ -143,7 +143,6 @@ MEDIA_URL = '/MEDIA/'
 
 LOGIN_REDIRECT_URL = 'Quizzer:index'
 
-
 # Production Stuff
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
