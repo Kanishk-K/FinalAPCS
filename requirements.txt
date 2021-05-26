@@ -3,3 +3,5 @@ django-cleanup
 gunicorn
 django-heroku
 Pillow
+cloudinary
+django-cloudinary-storage
