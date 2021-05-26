@@ -51,7 +51,6 @@ INSTALLED_APPS = [
 
     'django_cleanup.apps.CleanupConfig',
     'cloudinary_storage',
-    'django.contrib.staticfiles',
     'cloudinary',
 ]
 
