@@ -6,7 +6,7 @@
 {% block body%}
 <div class="container">
     <div class="row d-flex justify-content-center ">
-        <div class="col-10 text-center mt-5 text-white">
+        <div class="col-10 text-center text-white">
             <h1 style="font-size: 8vmin;">Current Available Quizzes</h1>
         </div>
     </div>
@@ -38,6 +38,12 @@
 			</ul>
 		</div>
 	</article>
+	{% empty %}
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<h4 class="text-white text-center" style="font-size: 4vmin;">Sorry, there are currently no available quizzes. If you're an admin please add some through the Modify Quiz section, otherwise please try again later.</h4>
+		</div>
+	</div>
     {% endfor %}
 </div>
 {% endblock %}
