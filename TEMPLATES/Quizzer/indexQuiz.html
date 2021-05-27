@@ -41,7 +41,7 @@
 	{% empty %}
 	<div class="container">
 		<div class="row d-flex justify-content-center">
-			<h4 class="text-white text-center" style="font-size: 4vmin;">Sorry, there are currently no available quizzes. If you're an admin please add some through the Modify Quiz section, otherwise please try again later.</h4>
+			<h4 class="text-white text-center" style="font-size: 4vmin;">Sorry, there are currently no available quizzes please try again later. {% if request.user.is_staff %} As an admin you can create a quiz by going to the Modify Quiz section above {% endif %}</h4>
 		</div>
 	</div>
     {% endfor %}
